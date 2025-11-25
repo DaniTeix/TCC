@@ -4,7 +4,7 @@ Este repositório foi criado para armazenar os *scripts* desenvolvidos no meu TC
 
 O foco deste README é facilitar a reprodução dos resultados, permitindo que outros usuários utilizem ou adaptem os códigos futuramente.
 
-1. {store_pubmed_articles.py}(https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/store_pubmed_articles.py)
+1. [store_pubmed_articles.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/store_pubmed_articles.py)
 
 Este *script* é responsável por baixar artigos de acesso aberto e gratuito da base PubMed, utilizando uma lista de PMIDs.
 
@@ -63,3 +63,37 @@ Observações:
 * A entrada deve conter artigos já processados pelo script anterior.
 * A saída é um arquivo .jsonl com as extrações geradas.
 
+3. [compare_models.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/compare_models.py)
+
+Este script realiza a comparação entre as respostas de dois modelos distintos, utilizando os arquivos .jsonl gerados anteriormente.
+Ele produz tabelas e gráficos com estatísticas relevantes.
+
+Bibliotecas utilizadas: 
+```bash
+import argparse
+import json
+import re
+from pathlib import Path
+from typing import Dict, List, Tuple, Set, Any, Optional
+from collections import defaultdict
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+Como executar:
+```bash
+python3 compare_models.py \
+  --model_a modeloA.jsonl \
+  --model_b modeloB.jsonl \
+  --outdir resultados/
+```
+Argumentos obrigatórios:
+* model_a
+* model_b
+
+## Considerações finais
+* Todos os scripts podem ser facilmente adaptados para aceitar argumentos adicionais.
+* *Recomenda-se criar um ambiente virtual para rodar as dependências.

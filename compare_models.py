@@ -4,8 +4,7 @@
 compare_models.py
 
 Comparação entre dois modelos (Modelo A = Qwen; Modelo B = Llama)
-usando arquivos .jsonl alinhados por prompt (P1–P8), no formato gerado por
-rebuild_jsonl_with_rawtext.py:
+usando arquivos .jsonl alinhados por prompt (P1–P8):
   { "pmid": "...", "prompts": [...], "responses": {
       "P1": {"response": {...}, "raw_text": "..."}, ..., "P8": {...}
     }
@@ -20,8 +19,6 @@ Saída:
 Requisitos:
 - Python 3.8+
 - pandas, numpy, matplotlib, seaborn
-
-Autor: (você)
 """
 
 import argparse

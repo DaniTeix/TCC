@@ -7,7 +7,7 @@ from Bio import Entrez
 # ===============================
 # CONFIG
 # ===============================
-Entrez.email = "danielli@estudante.ufscar.br"
+Entrez.email = "email@email.com.br"
 
 OUTPUT_FILE = "articles_with_fulltext5.json"
 
@@ -164,32 +164,32 @@ for pmid in PMIDS:
 
     metadata = fetch_metadata(pmid)
     if metadata is None:
-        print("  ❌ Could not fetch metadata.")
+        print("Could not fetch metadata.")
         continue
 
     pmcid = pmid_to_pmcid(pmid)
     metadata["pmcid"] = pmcid
 
     if pmcid is None:
-        print("  ⚠️ No PMCID found → skipping.")
+        print("No PMCID found → skipping.")
         continue
 
-    print(f"  ✅ PMCID: {pmcid}")
+    print(f"PMCID: {pmcid}")
 
     # Check OA subset
     if not check_oa(pmcid):
-        print("  ⚠️ Not in OA subset → full text legally inaccessible → skipping.")
+        print("Not in OA subset → full text legally inaccessible → skipping.")
         continue
 
-    print("  ✅ OA subset confirmed.")
+    print("OA subset confirmed.")
 
     # Try full text
     fulltext = fetch_fulltext(pmcid)
     if not fulltext:
-        print("  ❌ Full text could not be retrieved → skipping.")
+        print("Full text could not be retrieved → skipping.")
         continue
 
-    print("  ✅ Full text retrieved.")
+    print("Full text retrieved.")
 
     metadata["full_text"] = fulltext
     stored_articles.append(metadata)

@@ -425,9 +425,9 @@ def call_groq_chat(
 # MAIN
 # =====================================================================
 def main():
-    ap = argparse.ArgumentParser(description="Extrai P1–P8 (Groq) e gera JSONL alinhado ao formato Gemini.")
+    ap = argparse.ArgumentParser(description="Extrai P1–P8 (Groq) e gera JSONL")
     ap.add_argument("--input", "-i", default="articles_with_fulltext.json", help="JSON ou JSONL com artigos")
-    ap.add_argument("--output", "-o", default="qwen_or_llama_aligned.jsonl", help="JSONL de saída (Gemini-like)")
+    ap.add_argument("--output", "-o", default="qwen_or_llama_outputs.jsonl", help="JSONL de saída")
     ap.add_argument("--model", "-m", default="qwen/qwen3-32b", help="Modelo Groq (ex.: qwen/qwen3-32b, llama-3.1-8b-instant, ...)")
     ap.add_argument("--temperature", type=float, default=0.1)
     ap.add_argument("--max_tokens", type=int, default=700)

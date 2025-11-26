@@ -22,7 +22,7 @@ import os
 def converter_json_para_mapeamento(input_path: str, output_path: str) -> None:
     """Converte um JSON comum (lista ou dict) no formato pmid -> texto completo."""
     if not os.path.exists(input_path):
-        print(f"❌ Arquivo de entrada não encontrado: {input_path}")
+        print(f"Arquivo de entrada não encontrado: {input_path}")
         sys.exit(1)
 
     with open(input_path, "r", encoding="utf-8") as f:
@@ -35,7 +35,7 @@ def converter_json_para_mapeamento(input_path: str, output_path: str) -> None:
         for idx, rec in enumerate(data, start=1):
             pmid = str(rec.get("pmid", "")).strip()
             if not pmid:
-                print(f"⚠️ Registro {idx} sem PMID — ignorado.")
+                print(f"Registro {idx} sem PMID — ignorado.")
                 continue
 
             text_parts = [
@@ -52,7 +52,7 @@ def converter_json_para_mapeamento(input_path: str, output_path: str) -> None:
         for pmid, rec in data.items():
             pmid = str(pmid).strip()
             if not isinstance(rec, dict):
-                print(f"⚠️ Valor inesperado para {pmid}: esperado dict, obtido {type(rec).__name__}")
+                print(f"Valor inesperado para {pmid}: esperado dict, obtido {type(rec).__name__}")
                 continue
 
             text_parts = [
@@ -64,13 +64,13 @@ def converter_json_para_mapeamento(input_path: str, output_path: str) -> None:
             if text:
                 out[pmid] = text
     else:
-        print("❌ Estrutura de JSON não reconhecida: deve ser lista ou dicionário.")
+        print("Estrutura de JSON não reconhecida: deve ser lista ou dicionário.")
         sys.exit(1)
 
     with open(output_path, "w", encoding="utf-8") as g:
         json.dump(out, g, ensure_ascii=False, indent=2)
 
-    print(f"✅ Gerado: {output_path} com {len(out)} entradas.")
+    print(f"Gerado: {output_path} com {len(out)} entradas.")
 
 
 if __name__ == "__main__":

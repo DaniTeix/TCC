@@ -62,7 +62,7 @@ Observações:
 * A entrada deve conter artigos já processados pelo script anterior.
 * A saída é um arquivo .jsonl com as extrações geradas.
 
-3. [convert_json_for_json.py]()
+3. [convert_json_for_json.py](https://github.com/DaniTeix/TCC/blob/6722603bbe72c3675d86d3b49428e388434c6e7b/convert_json_for_json.py)
 
 Este *script* foi desenvolvido para ser utilizado como parâmetro não obrigatório no código [compare_models.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/compare_models.py) para calcular alucinação.
 De forma geral, foi feita uma transformação do arquivo [articles_with_fulltext5.json](https://github.com/DaniTeix/TCC/blob/3ee090075beffe0ce5d8f6bc7aa1b67295acf953/articles_with_fulltext5.json), gerado inicialmente, para um JSON mais simples, como pode ser observado no arquivo [articles_for_hallucination.json](https://github.com/DaniTeix/TCC/blob/6722603bbe72c3675d86d3b49428e388434c6e7b/articles_for_hallucination.json) 

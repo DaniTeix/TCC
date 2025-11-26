@@ -13,6 +13,8 @@ Funcionamento:
 * Faz requisições à API do PubMed/Entrez e salva os artigos em formato XML/JSON.
 * Atualmente, o e-mail do usuário (necessário para o Entrez) é colocado diretamente no código — mas essa parte pode ser facilmente adaptada para receber um argumento via terminal.
 
+Ao final foi gerado o arquivo [articles_with_fulltext5.json](https://github.com/DaniTeix/TCC/blob/3ee090075beffe0ce5d8f6bc7aa1b67295acf953/articles_with_fulltext5.json), contendo os 5 artigos selecionados.
+
 Bibliotecas utilizadas:
 ```bash
 import requests
@@ -53,19 +55,26 @@ from typing import Any, Dict, List, Optional, Tuple
 ```
 Como executar: 
 ```bash
-python3 extraction_qwen_or_llama.groq.py \
-  --input 'arquivo_com_artigos.json' \
-  --output 'saida.jsonl' \
-  --model 'qwen/qwen3-32b'  # ou 'llama-3.1-8b-instant'
+python3 extraction_qwen_or_llama.groq.py --input 'arquivo_com_artigos.json' --output 'saida.jsonl' --model 'qwen/qwen3-32b' ou 'llama-3.1-8b-instant'
 ```
 Observações:
-* O script foi pensado para ser flexível quanto ao modelo usado.
+* O *script* foi pensado para ser flexível quanto ao modelo usado.
 * A entrada deve conter artigos já processados pelo script anterior.
 * A saída é um arquivo .jsonl com as extrações geradas.
 
-3. [compare_models.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/compare_models.py)
+3. [convert_json_for_json]()
 
-Este script realiza a comparação entre as respostas de dois modelos distintos, utilizando os arquivos .jsonl gerados anteriormente.
+Este *script* foi desenvolvido para ser utilizado como parâmetro não obrigatório no código [compare_models.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/compare_models.py) para calcular alucinação.
+De forma geral, foi feita uma transformação do arquivo [articles_with_fulltext5.json](https://github.com/DaniTeix/TCC/blob/3ee090075beffe0ce5d8f6bc7aa1b67295acf953/articles_with_fulltext5.json), gerado inicialmente, para um JSON mais simples, como pode ser observado no arquivo [articles_for_hallucination]() 
+
+Como executar:
+```bash
+convert_json_for_json.py --input articles_with_fulltext5.json --output articles_for_hallucination.json
+```
+
+4. [compare_models.py](https://github.com/DaniTeix/TCC/blob/fd232dabf0fbef4663b69c0af630153f39dc74ba/compare_models.py)
+
+Este *script* realiza a comparação entre as respostas de dois modelos distintos, utilizando os arquivos .jsonl gerados anteriormente.
 Ele produz tabelas e gráficos com estatísticas relevantes.
 
 Bibliotecas utilizadas: 
@@ -85,10 +94,7 @@ import seaborn as sns
 
 Como executar:
 ```bash
-python3 compare_models.py \
-  --model_a modeloA.jsonl \
-  --model_b modeloB.jsonl \
-  --outdir resultados/
+python3 compare_models.py --model_a modeloA.jsonl --model_b modeloB.jsonl --outdir resultados/
 ```
 Argumentos obrigatórios:
 * model_a
